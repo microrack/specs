@@ -1,0 +1,102 @@
+name: Sync Markdown to Site Branch
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync markdown files to site branch
+        run: |
+          # Fetch all branches
+          git fetch origin
+
+          # Check if site branch exists
+          if git show-ref --verify --quiet refs/remotes/origin/site; then
+            git checkout site
+            git pull origin site
+          else
+            echo "Error: site branch does not exist. Please create it first."
+            exit 1
+          fi
+
+          mkdir -p docs/specs
+
+          # Get the conversion script from site branch
+          CONVERT_SCRIPT="scripts/convert_admonitions.py"
+
+          # Sync README.md from master root -> docs/index.md
+          # Convert GitHub markdown to MkDocs format (links + admonitions)
+          git show master:README.md | sed \
+            -e 's|\[Mechanical Specs\](mechanical/)|[Mechanical Specs](specs/mechanical.md)|g' \
+            -e 's|\[Electrical Specs\](electrical/)|[Electrical Specs](specs/electrical.md)|g' \
+            | python3 "$CONVERT_SCRIPT" > docs/index.md
+
+          # Sync LICENSE.md from master root -> docs/LICENSE.md
+          git show master:LICENSE.md > docs/LICENSE.md 2>/dev/null || true
+
+          # Sync mechanical/README.md -> docs/specs/mechanical.md
+          # Convert GitHub markdown links and admonitions to MkDocs format
+          git show master:mechanical/README.md 2>/dev/null | sed \
+            -e 's|\[Electrical\](../electrical/)|[Electrical](electrical.md)|g' \
+            | python3 "$CONVERT_SCRIPT" > docs/specs/mechanical.md || true
+
+          # Sync electrical/README.md -> docs/specs/electrical.md
+          # Convert GitHub markdown links and admonitions to MkDocs format
+          git show master:electrical/README.md 2>/dev/null | sed \
+            -e 's|\[Mechanical\](../mechanical/)|[Mechanical](mechanical.md)|g' \
+            | python3 "$CONVERT_SCRIPT" > docs/specs/electrical.md || true
+
+          # Sync images from mechanical/ and electrical/ -> docs/specs/
+          for ext in png jpg jpeg gif svg webp; do
+            for file in $(git ls-tree --name-only master:mechanical/ 2>/dev/null | grep -E "\.$ext$" || true); do
+              git show "master:mechanical/$file" > "docs/specs/$file"
+            done
+            for file in $(git ls-tree --name-only master:electrical/ 2>/dev/null | grep -E "\.$ext$" || true); do
+              git show "master:electrical/$file" > "docs/specs/$file"
+            done
+          done
+
+          # Stage all changes
+          git add -A
+
+          # Commit and push if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "CHANGES_MADE=false" >> $GITHUB_ENV
+          else
+            git commit -m "Sync markdown files from master"
+            git push origin site
+            echo "CHANGES_MADE=true" >> $GITHUB_ENV
+          fi
+
+      - name: Trigger deploy workflow
+        if: env.CHANGES_MADE == 'true'
+        run: |
+          gh workflow run deploy.yml --ref site
+        env:
+          GH_TOKEN: ${{ github.token }}
