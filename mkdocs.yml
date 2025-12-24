@@ -1,0 +1,70 @@
+site_name: Specification
+site_url: https://specs.microrack.org/
+site_description: Official technical specifications for the MICRORACK modular synthesizer platform
+site_author: MICRORACK
+
+repo_url: https://github.com/microrack/specs
+repo_name: microrack/specs
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  favicon: assets/icon.png
+  logo: assets/logo.png
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: deep purple
+      accent: green
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: deep purple
+      accent: green
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - assets/extra.css
+
+extra_javascript:
+  - assets/extra.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+extra:
+  generator: false
+
+copyright: Copyright &copy; 2019-2025 MICRORACK | <a href="https://cern-ohl.web.cern.ch/home" target="_blank" rel="noopener">This specification is published under CERN Open Hardware (W) License</a>
+
+nav:
+  - Specification: index.md
+  - Mechanical: specs/mechanical.md
+  - Electrical: specs/electrical.md

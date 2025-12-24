@@ -1,0 +1,839 @@
+/* Martian Mono font for entire site */
+@font-face {
+  font-family: 'Martian Mono';
+  src: url('martian-mono.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block; /* Prevent font jumping */
+}
+
+/* Apply Martian Mono globally */
+:root {
+  --md-text-font: 'Martian Mono', monospace;
+  --md-code-font: 'Martian Mono', monospace;
+}
+
+body, .md-typeset {
+  font-family: 'Martian Mono', monospace !important;
+  font-weight: 400 !important;
+}
+
+/* Header - light/dark theme support, sticky at top */
+.md-header {
+  background-color: #ffffff !important;
+  border-bottom: none !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 4 !important;
+}
+
+.md-header__inner {
+  padding: 17px 0 0 !important;
+}
+
+.md-grid {
+  max-width: 1252px !important;
+}
+
+.md-source {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-source {
+    margin-right: 1.8rem;
+  }
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+/* Show header shadow only when tabs are hidden (scrolled) */
+.md-header--shadow {
+  box-shadow: 0 2px 0 0 #eee !important;
+}
+
+[data-md-color-scheme="slate"] .md-header--shadow {
+  box-shadow: 0 2px 0 0 #333 !important;
+}
+
+/* Header branding - link to root */
+.md-header__title {
+  font-family: 'Martian Mono', monospace !important;
+  font-size: 22px;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-left: 0 !important;
+}
+
+.md-tabs__item {
+  text-transform: uppercase;
+}
+
+/* First topic (site name) - clickable to root */
+.md-header__title .md-header__topic:first-child {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Second topic (page title on scroll) - clickable to scroll to top */
+.md-header__title .md-header__topic:not(:first-child) {
+  cursor: pointer;
+}
+
+[data-md-color-scheme="slate"] .md-header__title {
+  color: #ffffff !important;
+}
+
+.md-header__topic {
+  font-family: 'Martian Mono', monospace !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-header__topic {
+  color: #ffffff !important;
+}
+
+.md-header__topic:first-child {
+  font-weight: 400 !important;
+}
+
+/* Logo sizing - match text line height, smaller gap */
+.md-header__button.md-logo {
+  padding: 0.1rem;
+  margin-right: 0.2rem;
+}
+
+.md-header__button.md-logo img {
+  height: 20px;
+  width: auto;
+  filter: none;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* Mobile: show compact logo between burger and title */
+@media screen and (max-width: 76.1875em) {
+  /* Hide the default logo in header completely */
+  .md-header__button.md-logo {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Position title area as flex to add logo */
+  .md-header__title {
+    display: flex !important;
+    align-items: center;
+  }
+  
+  /* Compact logo before title text */
+  .md-header__title::before {
+    content: '';
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-right: 0.4rem;
+    background-image: url('logo_compact.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    filter: brightness(0); /* Make logo black in light mode */
+  }
+  
+  /* Dark mode: make logo white */
+  [data-md-color-scheme="slate"] .md-header__title::before {
+    filter: brightness(0) invert(1);
+  }
+
+  .md-nav__item--nested {
+    text-transform: uppercase;
+  }
+}
+
+/* Header icons (settings, search) */
+.md-header__button {
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-header__button {
+  color: #ffffff !important;
+}
+
+.md-header__button svg {
+  fill: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-header__button svg {
+  fill: #ffffff !important;
+}
+
+/* Home, docs, and forum links in tabs row (desktop) */
+.md-tabs__item--home {
+  margin-left: auto !important;
+}
+
+.md-tabs__item--home .md-tabs__link,
+.md-tabs__item--docs .md-tabs__link,
+.md-tabs__item--forum .md-tabs__link {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.md-tabs__item--home .md-tabs__link:hover,
+.md-tabs__item--docs .md-tabs__link:hover,
+.md-tabs__item--forum .md-tabs__link:hover {
+  opacity: 1;
+}
+
+.md-tabs__item--home svg,
+.md-tabs__item--docs svg,
+.md-tabs__item--forum svg {
+  fill: currentColor;
+}
+
+/* Hide home/docs/forum in tabs on mobile (shown in drawer instead) */
+@media screen and (max-width: 76.1875em) {
+  .md-tabs__item--home,
+  .md-tabs__item--docs,
+  .md-tabs__item--forum {
+    display: none !important;
+  }
+}
+
+/* Hide the "Home" nav item from tabs and sidebar */
+.md-tabs__item:first-child:not(.md-tabs__item--home) {
+  display: none !important;
+}
+
+/* External links in mobile drawer - fixed at bottom */
+.md-nav__external-links {
+  display: none;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-nav__external-links {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0.75rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: var(--md-default-bg-color);
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+  }
+  
+  .md-nav__external-link {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--md-typeset-color) !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.85rem;
+  }
+  
+  .md-nav__external-link svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  /* Add padding at bottom of nav list to prevent overlap with fixed links */
+  .md-nav--primary > .md-nav__list {
+    padding-bottom: 6rem;
+  }
+}
+
+/* Navigation tabs - white background with sawtooth separator */
+.md-tabs {
+  background-color: #ffffff !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  position: relative;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #1e1e1e !important;
+}
+
+.md-tabs::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%25" height="20" preserveAspectRatio="none" style="display:block"><defs><pattern id="sawtooth-light" x="0" y="0" width="25" height="20" patternUnits="userSpaceOnUse"><path d="M0,0 L0,10 L25,0 Z" fill="%23ffffff"/><path d="M0,10 L25,0 L25,10" fill="none" stroke="%23000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter"/></pattern></defs><rect width="100%25" height="20" fill="url(%23sawtooth-light)"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 100% 20px;
+  pointer-events: none;
+  background-color: var(--md-default-bg-color);
+}
+
+[data-md-color-scheme="slate"] .md-tabs::after {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%25" height="20" preserveAspectRatio="none" style="display:block"><defs><pattern id="sawtooth-dark" x="0" y="0" width="25" height="20" patternUnits="userSpaceOnUse"><path d="M0,0 L0,10 L25,0 Z" fill="%231e1e1e"/><path d="M0,10 L25,0 L25,10" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter"/></pattern></defs><rect width="100%25" height="20" fill="url(%23sawtooth-dark)"/></svg>');
+}
+
+.md-tabs__link {
+  font-family: 'Martian Mono', monospace !important;
+  font-size: 0.75rem;
+  font-weight: 400 !important;
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-tabs__link {
+  color: #ffffff !important;
+}
+
+/* Sidebar */
+.md-nav__link {
+  font-family: 'Martian Mono', monospace !important;
+  font-weight: 400 !important;
+}
+
+/* Mobile drawer styling */
+.md-nav__title[for="__drawer"],
+.md-nav__header,
+.md-nav__title {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__title[for="__drawer"],
+[data-md-color-scheme="slate"] .md-nav__header,
+[data-md-color-scheme="slate"] .md-nav__title {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+/* Hide bold page title text in mobile drawer section headers (keep back icon) */
+@media screen and (max-width: 76.1875em) {
+  /* Hide "Docs" text in drawer header (for="__drawer") */
+  label.md-nav__title[for="__drawer"] {
+    font-size: 0 !important;
+    height: auto !important;
+    min-height: 2.4rem !important;
+    padding: 0.4rem 0.6rem !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Keep logo visible in drawer header */
+  label.md-nav__title[for="__drawer"] .md-logo,
+  label.md-nav__title[for="__drawer"] .md-logo img {
+    font-size: 1rem !important;
+  }
+  
+  /* Hide text in nav title labels that have back icons (for="__nav_X") */
+  label.md-nav__title[for^="__nav_"] {
+    font-size: 0 !important;
+    height: auto !important;
+    min-height: 2.4rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+  
+  /* But keep the back icon visible */
+  label.md-nav__title[for^="__nav_"] .md-nav__icon {
+    font-size: 1rem !important;
+  }
+}
+
+/* Desktop: transparent sidebar backgrounds */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary,
+  .md-nav--primary {
+    background-color: transparent !important;
+  }
+  
+  [data-md-color-scheme="slate"] .md-sidebar--primary,
+  [data-md-color-scheme="slate"] .md-nav--primary {
+    background-color: transparent !important;
+  }
+}
+
+/* Mobile: solid drawer background to prevent gaps */
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary {
+    background-color: #ffffff !important;
+  }
+  
+  [data-md-color-scheme="slate"] .md-nav--primary {
+    background-color: #1e1e1e !important;
+  }
+}
+
+/* Make nav titles transparent (no colored background) */
+.md-nav__title {
+  background-color: transparent !important;
+}
+
+/* Left sidebar section labels - transparent background */
+.md-nav[data-md-level="1"] > .md-nav__title,
+.md-nav--secondary > .md-nav__title {
+  background-color: transparent !important;
+}
+
+/* Logo in drawer */
+.md-nav__title .md-logo img,
+.md-nav__header .md-logo img {
+  filter: none !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__title .md-logo img,
+[data-md-color-scheme="slate"] .md-nav__header .md-logo img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Active link in drawer */
+.md-nav__link--active {
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link--active {
+  color: #ffffff !important;
+}
+
+/* Drawer icons */
+.md-nav__title svg,
+.md-nav__header svg,
+.md-nav__link svg,
+.md-nav__icon {
+  fill: #000000 !important;
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__title svg,
+[data-md-color-scheme="slate"] .md-nav__header svg,
+[data-md-color-scheme="slate"] .md-nav__link svg,
+[data-md-color-scheme="slate"] .md-nav__icon {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Hide section titles in sidebar on desktop (redundant with tabs) */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__link {
+    display: none;
+  }
+}
+
+/* Indent nested navigation items (except first item which is the index) */
+.md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav > .md-nav__list > .md-nav__item:not(:first-child) {
+  padding-left: 1rem;
+}
+
+/* Search */
+.md-search__input {
+  font-family: 'Martian Mono', monospace !important;
+  color: #000000 !important;
+  background-color: #f5f5f5 !important;
+  border: 1px solid #ddd !important;
+}
+
+.md-search__input:hover {
+  background-color: #eeeeee !important;
+  border-color: #ccc !important;
+}
+
+.md-search__input:focus {
+  background-color: #ffffff !important;
+  border-color: #673ab7 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input {
+  color: #ffffff !important;
+  background-color: #2d2d2d !important;
+  border-color: #444 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input:hover {
+  background-color: #333333 !important;
+  border-color: #555 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input:focus {
+  background-color: #1e1e1e !important;
+  border-color: #673ab7 !important;
+}
+
+.md-search__input::placeholder {
+  color: #666666 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input::placeholder {
+  color: #999999 !important;
+}
+
+.md-search__input+.md-search__icon {
+  color: var(--md-default-fg-color--light);
+}
+
+/* Headings - allow bold, clickable with reduced opacity on hover (h2-h6 only) */
+.md-typeset h1, .md-typeset h2, .md-typeset h3, 
+.md-typeset h4, .md-typeset h5, .md-typeset h6 {
+  font-family: 'Martian Mono', monospace !important;
+  font-weight: 500 !important;
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.md-typeset h2:hover, .md-typeset h3:hover,
+.md-typeset h4:hover, .md-typeset h5:hover, .md-typeset h6:hover {
+  opacity: 0.7;
+}
+
+/* Permalink - invisible but clickable, covers entire heading (h2-h6 only) */
+.md-typeset h2 .headerlink,
+.md-typeset h3 .headerlink,
+.md-typeset h4 .headerlink,
+.md-typeset h5 .headerlink,
+.md-typeset h6 .headerlink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Hide h1 headerlink completely */
+.md-typeset h1 .headerlink {
+  display: none;
+}
+
+/* Links inside headings should be above the headerlink overlay */
+.md-typeset h1 > a:not(.headerlink),
+.md-typeset h2 > a:not(.headerlink),
+.md-typeset h3 > a:not(.headerlink),
+.md-typeset h4 > a:not(.headerlink),
+.md-typeset h5 > a:not(.headerlink),
+.md-typeset h6 > a:not(.headerlink) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Code blocks */
+.md-typeset code, .md-typeset pre {
+  font-family: 'Martian Mono', monospace !important;
+}
+
+/* Center all images in content */
+.md-typeset img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Page navigation buttons (prev/next) - styled like Fumadocs */
+.page-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.page-nav__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--md-typeset-color);
+  background: transparent;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.page-nav__btn:hover {
+  border-color: var(--md-primary-fg-color);
+  background: var(--md-default-fg-color--lightest);
+}
+
+.page-nav__btn--prev {
+  justify-content: flex-start;
+}
+
+.page-nav__btn--next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.page-nav__arrow {
+  font-size: 1.5rem;
+  font-weight: 300;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.page-nav__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.page-nav__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+
+.page-nav__name {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.page-nav__spacer {
+  /* Empty space when no prev/next */
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 600px) {
+  .page-nav {
+    grid-template-columns: 1fr;
+  }
+  
+  .page-nav__btn--prev,
+  .page-nav__btn--next {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .page-nav__btn--next .page-nav__arrow {
+    order: -1;
+  }
+}
+
+/* Table of contents - green title, transparent background */
+.md-nav--secondary > .md-nav__title {
+  font-family: 'Martian Mono', monospace !important;
+  font-weight: 600 !important;
+  background-color: transparent !important;
+}
+
+.md-nav--secondary .md-nav__link {
+  font-family: 'Martian Mono', monospace !important;
+}
+
+/* ========================================
+   FOOTER WITH THEME SUPPORT
+   ======================================== */
+.md-footer {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  border-top: 2px solid #eee;
+}
+
+[data-md-color-scheme="slate"] .md-footer {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border-top: 2px solid #333;
+}
+
+.md-footer-meta {
+  background-color: #ffffff !important;
+  padding: 0.5rem 0 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer-meta {
+  background-color: #1e1e1e !important;
+}
+
+.md-footer-meta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Copyright text color for light/dark themes */
+.md-footer-copyright,
+.md-footer-meta__inner,
+.md-copyright,
+.md-copyright__highlight {
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer-copyright,
+[data-md-color-scheme="slate"] .md-footer-meta__inner,
+[data-md-color-scheme="slate"] .md-copyright,
+[data-md-color-scheme="slate"] .md-copyright__highlight {
+  color: #ffffff !important;
+}
+
+.md-footer-copyright a,
+.md-footer-meta__inner a,
+.md-copyright a,
+.md-copyright__highlight a {
+  color: #6b46c1 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer-copyright a,
+[data-md-color-scheme="slate"] .md-footer-meta__inner a,
+[data-md-color-scheme="slate"] .md-copyright a,
+[data-md-color-scheme="slate"] .md-copyright__highlight a {
+  color: #b794f6 !important;
+}
+
+/* Social icons in footer - centered, larger */
+.md-social {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.md-social__link {
+  color: #000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-social__link {
+  color: #ffffff !important;
+}
+
+.md-social__link:hover {
+  color: #000 !important;
+  opacity: 0.7;
+}
+
+[data-md-color-scheme="slate"] .md-social__link:hover {
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
+.md-footer-meta .md-social__link svg,
+.md-social__link svg {
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Footer navigation (prev/next) */
+.md-footer__inner {
+  background-color: #f8f8f8 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer__inner {
+  background-color: #252525 !important;
+}
+
+.md-footer__link {
+  color: #000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer__link {
+  color: #ffffff !important;
+}
+
+.md-footer__link:hover {
+  color: #000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer__link:hover {
+  color: #ffffff !important;
+}
+
+.md-footer__title {
+  color: #000 !important;
+  font-family: 'Martian Mono', monospace !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer__title {
+  color: #ffffff !important;
+}
+
+.md-footer__direction {
+  color: #000 !important;
+  font-family: 'Martian Mono', monospace !important;
+  font-size: 0.7rem;
+}
+
+[data-md-color-scheme="slate"] .md-footer__direction {
+  color: #ffffff !important;
+}
+
+/* Footer icon arrows */
+.md-footer__button {
+  color: #000 !important;
+}
+
+[data-md-color-scheme="slate"] .md-footer__button {
+  color: #ffffff !important;
+}
+
+/* Copy article button */
+.article-copy-button {
+  float: right;
+  margin-left: 0.35rem;
+  margin-bottom: 0.35rem;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #111;
+  font-family: 'Martian Mono', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.article-copy-button:hover {
+  color: #000;
+}
+
+.article-copy-button--success {
+  color: #1b5e20;
+}
+
+.article-copy-button--error {
+  color: #b71c1c;
+}
+
+/* ========================================
+   TEMPORARILY HIDE DOCS LINK
+   ======================================== */
+/* Hide DOCS tab on desktop */
+.md-tabs__item--docs {
+  display: none !important;
+}
+
+/* Hide DOCS link in mobile drawer */
+.md-nav__external-link[href*="docs-test"] {
+  display: none !important;
+}
