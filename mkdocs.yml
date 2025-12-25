@@ -5,7 +5,7 @@ site_author: MICRORACK
 
 repo_url: https://github.com/microrack/specs
 repo_name: microrack/specs
-edit_uri: edit/master/docs/
+edit_uri: edit/master/
 
 theme:
   name: material
@@ -66,5 +66,5 @@ copyright: Copyright &copy; 2019-2025 MICRORACK | <a href="https://cern-ohl.web.
 
 nav:
   - Specification: index.md
-  - Mechanical: specs/mechanical.md
-  - Electrical: specs/electrical.md
+  - Mechanical: specs/mechanical/README.md
+  - Electrical: specs/electrical/README.md

@@ -6,29 +6,39 @@ This branch contains the MkDocs build configuration for the MICRORACK specificat
 
 ## How it works
 
-1. Content is edited in the `master` branch (bare markdown files)
-2. GitHub Actions automatically syncs content to this branch
+1. Content is edited in the `master` branch (README.md files in subdirectories)
+2. When site branch is pushed, GitHub Actions copies content from master
 3. MkDocs builds and deploys to GitHub Pages
 
 ## Structure
 
+### Master Branch
 ```
-site-branch/
+master/
+├── README.md                 # Main specification page
+├── LICENSE.md
+├── electrical/
+│   ├── README.md            # Electrical specs
+│   └── *.png                # Diagrams
+└── mechanical/
+    ├── README.md            # Mechanical specs
+    └── *.png                # Diagrams
+```
+
+### Site Branch (this branch)
+```
+site/
 ├── docs/
-│   ├── index.md              # ← synced from master/README.md
 │   ├── CNAME
-│   ├── LICENSE.md
-│   ├── assets/               # Theme assets (CSS, JS, images)
-│   └── specs/
-│       ├── mechanical.md     # ← synced from master/mechanical/README.md
-│       ├── electrical.md     # ← synced from master/electrical/README.md
-│       └── *.png             # ← synced from master/mechanical/*.png, etc.
+│   ├── assets/              # Theme assets (CSS, JS)
+│   └── specs/               # ← Content copied during build
+│       ├── electrical/      # ← from master/electrical/
+│       └── mechanical/      # ← from master/mechanical/
 ├── .github/workflows/
-│   ├── sync-to-site.yml      # Syncs content from master
-│   └── deploy.yml            # Builds & deploys MkDocs
-├── mkdocs.yml
+│   └── deploy.yml           # Builds & deploys MkDocs
+├── mkdocs.yml               # MkDocs configuration
 ├── requirements.txt
-└── README.md                 # This file
+└── README.md                # This file
 ```
 
 ## Local Development

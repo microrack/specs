@@ -45,31 +45,31 @@ document.addEventListener('DOMContentLoaded', function() {
       electricalTab.innerHTML = icon + 'Electrical';
     }
     
-    // Home link
-    const homeItem = document.createElement('li');
-    homeItem.className = 'md-tabs__item md-tabs__item--home';
-    homeItem.innerHTML = '<a href="https://microrack.org" class="md-tabs__link" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; margin-right: 0.3rem;"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a>';
-    tabsList.appendChild(homeItem);
-    
-    // Docs link
-    const docsItem = document.createElement('li');
-    docsItem.className = 'md-tabs__item md-tabs__item--docs';
-    docsItem.innerHTML = '<a href="https://microrack.github.io/docs-test" class="md-tabs__link" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; margin-right: 0.3rem;"><path fill="currentColor" d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>Docs</a>';
-    tabsList.appendChild(docsItem);
+    // Modules link
+    const modulesItem = document.createElement('li');
+    modulesItem.className = 'md-tabs__item md-tabs__item--modules';
+    modulesItem.innerHTML = '<a href="https://modules.microrack.org" class="md-tabs__link" target="_blank" rel="noopener"><span style="font-size: 1rem; line-height: .85rem; margin-right: 0.3rem; vertical-align: middle;">⊶</span>Modules</a>';
+    tabsList.appendChild(modulesItem);
     
     // Forum link
     const forumItem = document.createElement('li');
     forumItem.className = 'md-tabs__item md-tabs__item--forum';
     forumItem.innerHTML = '<a href="https://forum.microrack.org" class="md-tabs__link" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; margin-right: 0.3rem;"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L2 22l5.71-.97A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.4 0-2.74-.36-3.91-1.03l-.28-.16-2.89.49.49-2.89-.16-.28A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>Forum</a>';
     tabsList.appendChild(forumItem);
+
+    // Home link
+    const homeItem = document.createElement('li');
+    homeItem.className = 'md-tabs__item md-tabs__item--home';
+    homeItem.innerHTML = '<a href="https://microrack.org" class="md-tabs__link" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; margin-right: 0.3rem;"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a>';
+    tabsList.appendChild(homeItem);
   }
   
-  // Add docs and forum links to mobile drawer (fixed at bottom)
+  // Add modules and forum links to mobile drawer (fixed at bottom)
   const drawerNav = document.querySelector('.md-nav--primary');
   if (drawerNav) {
     const linksContainer = document.createElement('div');
     linksContainer.className = 'md-nav__external-links';
-    linksContainer.innerHTML = '<a href="https://microrack.github.io/docs-test" class="md-nav__external-link" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>Docs</a><a href="https://forum.microrack.org" class="md-nav__external-link" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L2 22l5.71-.97A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.4 0-2.74-.36-3.91-1.03l-.28-.16-2.89.49.49-2.89-.16-.28A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>Forum</a>';
+    linksContainer.innerHTML = '<a href="https://modules.microrack.org" class="md-nav__external-link" target="_blank" rel="noopener"><span style="font-size: 1.2rem; line-height: 1; margin-right: 0.2rem; vertical-align: middle;">⊶</span>Modules</a><a href="https://forum.microrack.org" class="md-nav__external-link" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L2 22l5.71-.97A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.4 0-2.74-.36-3.91-1.03l-.28-.16-2.89.49.49-2.89-.16-.28A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>Forum</a>';
     drawerNav.appendChild(linksContainer);
   }
   

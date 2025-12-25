@@ -184,13 +184,13 @@ body, .md-typeset {
   fill: #ffffff !important;
 }
 
-/* Home, docs, and forum links in tabs row (desktop) */
-.md-tabs__item--home {
+/* Home, modules, and forum links in tabs row (desktop) */
+.md-tabs__item--modules {
   margin-left: auto !important;
 }
 
 .md-tabs__item--home .md-tabs__link,
-.md-tabs__item--docs .md-tabs__link,
+.md-tabs__item--modules .md-tabs__link,
 .md-tabs__item--forum .md-tabs__link {
   display: flex;
   align-items: center;
@@ -199,21 +199,21 @@ body, .md-typeset {
 }
 
 .md-tabs__item--home .md-tabs__link:hover,
-.md-tabs__item--docs .md-tabs__link:hover,
+.md-tabs__item--modules .md-tabs__link:hover,
 .md-tabs__item--forum .md-tabs__link:hover {
   opacity: 1;
 }
 
 .md-tabs__item--home svg,
-.md-tabs__item--docs svg,
+.md-tabs__item--modules svg,
 .md-tabs__item--forum svg {
   fill: currentColor;
 }
 
-/* Hide home/docs/forum in tabs on mobile (shown in drawer instead) */
+/* Hide home/modules/forum in tabs on mobile (shown in drawer instead) */
 @media screen and (max-width: 76.1875em) {
   .md-tabs__item--home,
-  .md-tabs__item--docs,
+  .md-tabs__item--modules,
   .md-tabs__item--forum {
     display: none !important;
   }
@@ -825,15 +825,3 @@ body, .md-typeset {
   color: #b71c1c;
 }
 
-/* ========================================
-   TEMPORARILY HIDE DOCS LINK
-   ======================================== */
-/* Hide DOCS tab on desktop */
-.md-tabs__item--docs {
-  display: none !important;
-}
-
-/* Hide DOCS link in mobile drawer */
-.md-nav__external-link[href*="docs-test"] {
-  display: none !important;
-}
