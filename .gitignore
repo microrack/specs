@@ -1,6 +1,26 @@
+# Build artifacts
 site/
+
+# Content fetched from master during build
+docs/index.md
+docs/LICENSE.md
+docs/electrical/
+docs/mechanical/
+
+# Python virtual environment
 .venv/
 venv/
+env/
+
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
+Thumbs.db
