@@ -38,19 +38,18 @@ jobs:
           cp master-content/LICENSE.md docs/LICENSE.md
           echo "Copied LICENSE.md -> docs/LICENSE.md"
           
-          # Copy specs folders from master to docs/specs/
+          # Copy specs folders from master directly to docs/
           for dir in master-content/electrical master-content/mechanical; do
             spec=$(basename "$dir")
-            rm -rf "docs/specs/${spec}"
-            mkdir -p "docs/specs"
-            cp -r "$dir" "docs/specs/"
-            echo "Copied ${spec}/ -> docs/specs/${spec}/"
+            rm -rf "docs/${spec}"
+            cp -r "$dir" "docs/"
+            echo "Copied ${spec}/ -> docs/${spec}/"
           done
           
           # Clean up
           rm -rf master-content
-          echo "=== Content in docs/specs/ ==="
-          ls -la docs/specs/
+          echo "=== Content in docs/ ==="
+          ls -la docs/
 
       - name: Set up Python
         uses: actions/setup-python@v5

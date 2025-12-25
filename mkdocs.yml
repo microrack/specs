@@ -66,5 +66,5 @@ copyright: Copyright &copy; 2019-2025 MICRORACK | <a href="https://cern-ohl.web.
 
 nav:
   - Specification: index.md
-  - Mechanical: specs/mechanical/README.md
-  - Electrical: specs/electrical/README.md
+  - Mechanical: mechanical/README.md
+  - Electrical: electrical/README.md
