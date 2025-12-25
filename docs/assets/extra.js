@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modules link
     const modulesItem = document.createElement('li');
     modulesItem.className = 'md-tabs__item md-tabs__item--modules';
-    modulesItem.innerHTML = '<a href="https://modules.microrack.org" class="md-tabs__link" target="_blank" rel="noopener"><span style="font-size: 1rem; line-height: .85rem; margin-right: 0.3rem; vertical-align: middle;">⊶</span>Modules</a>';
+    modulesItem.innerHTML = '<a href="https://modules.microrack.org" class="md-tabs__link"><span style="font-size: 1rem; line-height: .85rem; margin-right: 0.3rem; vertical-align: middle;">⊶</span>Modules</a>';
     tabsList.appendChild(modulesItem);
     
     // Forum link
