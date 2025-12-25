@@ -15,7 +15,7 @@ MICRORACK modules are placed on the breadboard and use the following **order of 
 | GND | 0V | Ground reference |
 | V12- | -12V | Negative power supply |
 
-> Middle section pins of the breadboards are not used for either power distribution by MICRORACK Specification and is reserved for extending I/O signals or prototyping.
+> Middle section pins of the breadboards are not used for power distribution by MICRORACK Specification and is reserved for extending I/O signals or prototyping.
 
 - **Voltage tolerance**: ±10% on all power rails
 - **Ripple**: Up to 200 mV Vpp

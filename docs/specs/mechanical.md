@@ -10,15 +10,15 @@ To ensure compatibility between modules and accessories, all mechanical aspects 
 
 The **height of the module is 2090 mil (53 mm)**. If the module has connectors on the top, it is allowed to increase the height by 400 mil (10 mm).
 
-The **Width of modules is not fixed.** To increment the module width use formula:
+The **width of modules is not fixed.** To increment the module width use formula:
 
 > (N+1) * 100 mil (2.54 mm)
 
-Where N is the number of 100 mil (2.54 mm) breadboard lines the module occupies.
+Where N+1 is the number of 100 mil (2.54 mm) breadboard lines the module occupies.
 
 !!! example "Example"
 
-    Module with a width of 6 lines will have a width of `6+1 * 100 = 700 mil (17.5 mm)`
+    Module with a width of 7 lines will have a width of `6+1 * 100 = 700 mil (17.5 mm)`
 
 To easily distinguish between top and bottom of the modules, a **symmetrical triangular cutout** is made at the bottom. Height or "depth" of cutout is 60 mil (1.52 mm).
 
@@ -28,7 +28,7 @@ Each module equipped with power contacts at the bottom layer of the board. There
 
 ![MICRORACK Voltage Layout](voltage-layout.png)
 
-**Male Pin Headers with a 100 mil (2.54 mm) pitch** are used for all contacts. The -12V and GND contacts are located at the bottom corners of the board, while the +12V and +5V contacts are located at the top corners.
+**Male pin headers with a 100 mil (2.54 mm) pitch** are used for power contacts. The -12V and GND contacts are located at the bottom corners of the board, while the +12V and +5V contacts are located at the top corners.
 
 !!! tip "Tip"
 
@@ -36,15 +36,13 @@ Each module equipped with power contacts at the bottom layer of the board. There
 
 The distance between the centers of the **inner pins** is 1655 mil (42 mm). The distance from the center of the **outer pins** to the edges of the board is 130 mil (3.3 mm).
 
-!!! tip "Tip"
-
-    It is recommended to use 0.9 mm holes for standard pin headers
+> It is recommended to use 0.9 mm holes for standard male pin headers
 
 The offset of the outline from the center of the contact to the side is 50 mil (1.27 mm).
 
 ## Module Interconnection
 
-Colored male pin headers are used for connecting modules to each other. Blue ones for inputs, red ones for outputs. Black one usually serve utility functions like chaining, power extension, stylus or ground.
+Color coded male pin headers are used for connecting modules to each other. Blue ones for inputs, red ones for outputs. Black pins usually serve utility functions like chaining, power extension, stylus voltage or ground.
 
 !!! note "I/O Placement"
 
